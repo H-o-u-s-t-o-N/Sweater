@@ -7,15 +7,11 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
 
-/**
- * Created by HoustoN
- * Date: 9/27/2020
- */
 @Entity
 @Table(name = "usr")
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
     private String password;

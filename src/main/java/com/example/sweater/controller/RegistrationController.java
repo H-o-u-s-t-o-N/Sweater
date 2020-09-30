@@ -1,9 +1,5 @@
 package com.example.sweater.controller;
 
-/**
- * Created by HoustoN
- * Date: 9/27/2020
- */
 import com.example.sweater.domain.Role;
 import com.example.sweater.domain.User;
 import com.example.sweater.repos.UserRepo;
@@ -35,7 +31,7 @@ public class RegistrationController {
         }
 
         user.setActive(true);
-        user.setRoles(Collections.singleton(Role.USER));
+        user.setRoles(Collections.singleton(Role.ADMIN));
         userRepo.save(user);
 
         return "redirect:/login";
