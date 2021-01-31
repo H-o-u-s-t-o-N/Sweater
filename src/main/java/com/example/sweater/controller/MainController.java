@@ -30,8 +30,6 @@ public class MainController {
 
     @Value("${upload.path}")
     private String uploadPath;
-    @Value("${upload.disk}")
-    private String uploadDisk;
 
     @GetMapping("/")
     public String greeting(Map<String, Object> model) {
@@ -86,7 +84,7 @@ public class MainController {
 
     private void saveFile(@Valid Message message, @RequestParam("file") MultipartFile file) throws IOException {
         if (file != null && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadDisk + uploadPath);
+            File uploadDir = new File(uploadPath);
 
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
@@ -95,7 +93,7 @@ public class MainController {
             String uuidFile = UUID.randomUUID().toString();
             String resultFilename = uuidFile + "." + file.getOriginalFilename();
 
-            file.transferTo(new File(uploadDisk + uploadPath + "/" + resultFilename));
+            file.transferTo(new File(uploadPath + "/" + resultFilename));
 
             message.setFilename(resultFilename);
         }
@@ -110,6 +108,10 @@ public class MainController {
     ) {
         Set<Message> messages = user.getMessages();
 
+        model.addAttribute("userChannel", user);
+        model.addAttribute("subscriptionsCount", user.getSubscriptions().size());
+        model.addAttribute("subscribersCount", user.getSubscribers().size());
+        model.addAttribute("isSubscriber", user.getSubscribers().contains(currentUser));
         model.addAttribute("messages", messages);
         model.addAttribute("message", message);
         model.addAttribute("isCurrentUser", currentUser.equals(user));
