@@ -1,2 +1,2 @@
 # Sweater
-Clone Twitter
+Spring MVC project
