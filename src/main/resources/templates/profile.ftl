@@ -2,6 +2,8 @@
 
 <@c.page>
 <h5>${username}</h5>
+    <br>
+    <h6>You can change some fields</h6>
 ${message?ifExists}
 <form method="post">
     <div class="form-group row">

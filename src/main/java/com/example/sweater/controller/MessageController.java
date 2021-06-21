@@ -37,9 +37,6 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-    @Value("${upload.path}")
-    private String uploadPath;
-
     @GetMapping("/")
     public String greeting(Map<String, Object> model) {
         return "greeting";
@@ -77,7 +74,7 @@ public class MessageController {
             model.mergeAttributes(errorsMap);
             model.addAttribute("message", message);
         } else {
-            saveFile(message, file);
+            messageService.saveFile(message, file);
 
             model.addAttribute("message", null);
 
@@ -91,22 +88,6 @@ public class MessageController {
         return "main";
     }
 
-    private void saveFile(@Valid Message message, @RequestParam("file") MultipartFile file) throws IOException {
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadPath);
-
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFilename = uuidFile + "." + file.getOriginalFilename();
-
-            file.transferTo(new File(uploadPath + "/" + resultFilename));
-
-            message.setFilename(resultFilename);
-        }
-    }
 
     @GetMapping("/user-messages/{author}")
     public String userMessges(
@@ -139,19 +120,7 @@ public class MessageController {
             @RequestParam("tag") String tag,
             @RequestParam("file") MultipartFile file
     ) throws IOException {
-        if (message.getAuthor().equals(currentUser)) {
-            if (!StringUtils.isEmpty(text)) {
-                message.setText(text);
-            }
-
-            if (!StringUtils.isEmpty(tag)) {
-                message.setTag(tag);
-            }
-
-            saveFile(message, file);
-
-            messageRepo.save(message);
-        }
+        messageService.updateMessage(currentUser, message, text, tag, file);
 
         return "redirect:/user-messages/" + user;
     }
