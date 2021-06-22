@@ -26,6 +26,9 @@ public class UserSevice implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Value("${hostname}")
+    private String hostname;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepo.findByUsername(username);
@@ -60,8 +63,9 @@ public class UserSevice implements UserDetailsService {
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
-                            "Welcome to Sweater. Please, visit next link: http://%s/activate/%s",
+                            "Welcome to Sweater. Please, visit next link: https://%s/activate/%s",
                     user.getUsername(),
+                    hostname,
                     user.getActivationCode()
             );
 
