@@ -55,11 +55,11 @@ public class MessageService {
         }
     }
     public void saveFile(@Valid Message message, @RequestParam("file") MultipartFile file) throws IOException {
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
+        if (!file.isEmpty() && !file.getOriginalFilename().isEmpty()) {
             File uploadDir = new File(uploadPath);
 
             if (!uploadDir.exists()) {
-                uploadDir.mkdir();
+                uploadDir.mkdirs();
             }
 
             String uuidFile = UUID.randomUUID().toString();
