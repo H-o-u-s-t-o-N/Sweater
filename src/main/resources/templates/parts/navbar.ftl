@@ -28,7 +28,6 @@
             </li>
             </#if>
         </ul>
-
         <div class="navbar-text mr-3"><#if user??>${name}<#else>Please, login</#if></div>
             <form action="/logout" method="post">
                 <input type="hidden" name="_csrf" value="${_csrf.token}" />

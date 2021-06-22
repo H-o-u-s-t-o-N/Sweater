@@ -76,4 +76,8 @@ public class MessageService {
         saveFile(message, file);
         messageRepo.save(message);
     }
+
+    public void delete(Message message) {
+        messageRepo.delete(message);
+    }
 }

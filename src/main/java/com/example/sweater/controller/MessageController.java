@@ -141,4 +141,21 @@ public class MessageController {
 
         return "redirect:" + components.getPath();
     }
+
+    @GetMapping("/messages/{message}/delete")
+    public String delete(
+            @PathVariable Message message,
+            RedirectAttributes redirectAttributes,
+            @RequestHeader(required = false) String referer
+    ){
+        messageService.delete(message);
+
+        UriComponents components = UriComponentsBuilder.fromHttpUrl(referer).build();
+
+        components.getQueryParams()
+                .entrySet()
+                .forEach(pair -> redirectAttributes.addAttribute(pair.getKey(), pair.getValue()));
+
+        return "redirect:" + components.getPath();
+    }
 }
