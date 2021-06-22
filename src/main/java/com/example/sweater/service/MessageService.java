@@ -70,4 +70,10 @@ public class MessageService {
             message.setFilename(resultFilename);
         }
     }
+
+    public void saveMessage(User user, Message message, MultipartFile file) throws IOException {
+        message.setAuthor(user);
+        saveFile(message, file);
+        messageRepo.save(message);
+    }
 }
