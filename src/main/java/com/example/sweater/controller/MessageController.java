@@ -97,6 +97,7 @@ public class MessageController {
         model.addAttribute("subscribersCount", author.getSubscribers().size());
         model.addAttribute("isSubscriber", author.getSubscribers().contains(currentUser));
         model.addAttribute("page", page);
+        model.addAttribute("editPage", "");
         model.addAttribute("message", message);
         model.addAttribute("isCurrentUser", currentUser.equals(author));
         model.addAttribute("url", "/user-messages/" + author.getId());

@@ -52,6 +52,10 @@ public class UserController {
         model.addAttribute("username", user.getUsername());
         model.addAttribute("email", user.getEmail());
 
+        if(user.getActivationCode() != null){
+            model.addAttribute("ConfirmEmail", "Please, confirm your email");
+        }
+
         return "profile";
     }
 
