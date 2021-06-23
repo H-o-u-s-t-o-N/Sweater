@@ -64,7 +64,7 @@ public class UserSevice implements UserDetailsService {
             String message = String.format(
                     "Hello, %s! \n" +
                             "Welcome to Sweater. \n" +
-                            "Please, visit next link: https://%s/activate/%s \n" +
+                            "Please, visit next link: %s/activate/%s \n" +
                             "and activate your profile.",
                     user.getUsername(),
                     hostname,

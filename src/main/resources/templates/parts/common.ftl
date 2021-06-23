@@ -12,7 +12,25 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
-        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <script>
+            var _captchaTries = 0;
+            function recaptchaOnload() {
+                _captchaTries++;
+                if (_captchaTries > 9)
+                    return;
+                if ($('.g-recaptcha').length > 0) {
+                    grecaptcha.render("recaptcha", {
+                        sitekey: '6LeDrNMZAAAAAKFvkVwfGyd0H7cSAHUT7TX2t71L',
+                        callback: function() {
+                            console.log('recaptcha callback');
+                        }
+                    });
+                    return;
+                }
+                window.setTimeout(recaptchaOnload, 1000);
+            }
+        </script>
+        <script src='https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&&hl=en-GB&render=explicit' async defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"></script>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
