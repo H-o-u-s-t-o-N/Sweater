@@ -22,7 +22,7 @@ It's a static Application.
 
 To see this project - click [Here](https://sweater-houston.herokuapp.com/)
 
-To login like Admin use this: <br/>
+To login as Admin use this: <br/>
 Login: `Admin` </br>
 Password: `123`
 
