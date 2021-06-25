@@ -13,7 +13,7 @@
 
 --------
 
-####It`s a simple and uncomplicated app. Elementary clone of Twitter.
+#### It`s a simple and uncomplicated app. Elementary clone of Twitter.
 
 ---------
 This project wrote without (my) JS and I use only POST's and GET's methods.
@@ -21,7 +21,7 @@ It's a static Application.
 
 To see this project - click [Here](https://sweater-houston.herokuapp.com/)
 
-To login like Admin use this: <br/>
-Login: `Admin` </br>
+To login as Admin use this: <br/>
+Login: `admin` </br>
 Password: `123`
 
