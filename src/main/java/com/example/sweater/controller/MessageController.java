@@ -3,7 +3,6 @@ package com.example.sweater.controller;
 import com.example.sweater.domain.Message;
 import com.example.sweater.domain.User;
 import com.example.sweater.domain.dto.MessageDto;
-import com.example.sweater.repos.MessageRepo;
 import com.example.sweater.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,7 +30,7 @@ public class MessageController {
     private MessageService messageService;
 
     @GetMapping("/")
-    public String greeting(Map<String, Object> model) {
+    public String greeting(Model model) {
         return "greeting";
     }
 

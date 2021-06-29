@@ -22,6 +22,6 @@ It's a static Application.
 To see this project - click [Here](https://sweater-houston.herokuapp.com/)
 
 To login as Admin use this: <br/>
-Login: `admin` </br>
+Login: `Bravo` </br>
 Password: `123`
 

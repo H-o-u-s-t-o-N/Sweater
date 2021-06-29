@@ -10,10 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
@@ -48,13 +46,15 @@ public class MessageService {
             if (!StringUtils.isEmpty(tag)) {
                 message.setTag(tag);
             }
-
+            File oldfile = new File(uploadPath + "/" + message.getFilename());
+            oldfile.delete();
+            message.setFilename(null);
             saveFile(message, file);
 
             messageRepo.save(message);
         }
     }
-    public void saveFile(@Valid Message message, @RequestParam("file") MultipartFile file) throws IOException {
+    public void saveFile(Message message, MultipartFile file) throws IOException {
         if (!file.isEmpty() && !file.getOriginalFilename().isEmpty()) {
             File uploadDir = new File(uploadPath);
 
@@ -78,6 +78,8 @@ public class MessageService {
     }
 
     public void delete(Message message) {
+        File file = new File(uploadPath + "/" + message.getFilename());
+        file.delete();
         messageRepo.delete(message);
     }
 }

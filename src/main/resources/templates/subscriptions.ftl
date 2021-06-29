@@ -2,7 +2,9 @@
 
 <@c.page>
 <h3>${userChannel.username}</h3>
-<div>${type}</div>
+<div class="my-3">
+    <h5>${type}</h5>
+</div>
 <ul class="list-group">
     <#list users as user>
         <li class="list-group-item">
