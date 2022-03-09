@@ -1,4 +1,5 @@
 # Sweater
+This is one of my first projects. I'll leave it here so you can see my progress
 
 -------------
 
